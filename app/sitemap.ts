@@ -1,15 +1,10 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+export const dynamic = 'force-static';
 
-const BASE_URL = 'https://zentha.in';
+export default async function handler() {
+    const BASE_URL = 'https://zentha.in';
 
-const staticPages = [
-    '',
-    '/about',
-    '/contact',
-    '/blog',
-];
+    const staticPages = ['', '/about', '/contact', '/blog'];
 
-function generateSitemap(): string {
     const urls = staticPages
         .map(
             (page) => `
@@ -21,14 +16,12 @@ function generateSitemap(): string {
         )
         .join('');
 
-    return `<?xml version="1.0" encoding="UTF-8"?>
+    const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     ${urls}
 </urlset>`;
-}
 
-export async function GET() {
-    return new Response(generateSitemap(), {
+    return new Response(xml, {
         headers: {
             'Content-Type': 'application/xml',
         },
