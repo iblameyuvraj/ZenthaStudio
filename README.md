@@ -45,7 +45,7 @@ Every project is crafted with care, creativity, and modern development principle
 
 For collaborations, freelance work, or just a friendly chat:
 
-- ✉️ Email: [Click for email](mailto:studio.Zentha@gmail.com) & [Yuvraj] (https://yuvraj.site)
+- ✉️ Email: [Click for email](mailto:studio.Zentha@gmail.com) & [Yuvraj](https://yuvraj.site)
 - 🌐 Website: [zenthastudio.com](https://zentha.in) 
 - 📸 Instagram: [@zentha.studio](https://instagram.com/zentha.studio)
 
