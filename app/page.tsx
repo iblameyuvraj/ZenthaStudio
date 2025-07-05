@@ -10,6 +10,7 @@ import FloatingItemComponent from "./components/ui/FloatingItemComponent";
 import HeroSection from "./components/sections/HeroSection";
 import AboutPage from "./components/sections/AboutSection";
 import Footer from "./components/ui/Footer";
+import MobileBlock from "./components/ui/MobileBlock";
 //  import ProjectSection from "./components/sections/ProjectSection";
 
 const Page: React.FC = () => {
@@ -40,6 +41,11 @@ const Page: React.FC = () => {
 
     setItems(initialItems);
   }, [isMobile]);
+
+  // Show mobile block if on mobile device
+  if (isMobile) {
+    return <MobileBlock />;
+  }
 
   return (
     <div

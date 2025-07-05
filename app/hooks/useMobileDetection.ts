@@ -9,7 +9,8 @@ export const useMobileDetection = () => {
     const checkMobile = () => {
       clearTimeout(timeoutId);
       timeoutId = setTimeout(() => {
-        setIsMobile(window.innerWidth < 768);
+        // Consider devices with width less than 1024px as mobile for better desktop experience
+        setIsMobile(window.innerWidth < 1024);
       }, 100);
     };
 
