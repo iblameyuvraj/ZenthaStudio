@@ -1,14 +1,16 @@
-import { Geist, Geist_Mono, Great_Vibes, Josefin_Sans, Poppins, Quicksand } from "next/font/google";
+import { Great_Vibes, Josefin_Sans, Poppins, Quicksand } from "next/font/google";
+import "@fontsource/geist-sans";
+import "@fontsource/geist-mono";
 
-export const geistSans = Geist({
+export const geistSans = {
   variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+  className: "font-geist-sans",
+};
 
-export  const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+export const geistMono = {
+  variable: "--font-geist-mono", 
+  className: "font-geist-mono",
+};
 
 export const josefinSans = Josefin_Sans({
   variable: "--font-josefin-sans",
@@ -20,14 +22,13 @@ export const quicksand = Quicksand({
   subsets: ["latin"],
 });
 
-
 export const poppins = Poppins({
   variable: "--font-poppins",
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
-export const greatvibes= Great_Vibes({
+export const greatvibes = Great_Vibes({
   variable: "--font-great-vibes",
   subsets: ["latin"],
   weight: ["400"],
