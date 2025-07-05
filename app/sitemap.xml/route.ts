@@ -1,6 +1,6 @@
 export const dynamic = 'force-static';
 
-export default async function handler() {
+export async function GET() {
     const BASE_URL = 'https://zentha.in';
 
     const staticPages = ['', '/about', '/contact', '/blog'];
@@ -26,4 +26,4 @@ export default async function handler() {
             'Content-Type': 'application/xml',
         },
     });
-}
+} 

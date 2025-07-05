@@ -1,5 +1,5 @@
 import React, {  useRef } from 'react';
-import { motion, useScroll, useTransform, useInView } from 'framer-motion';
+import { motion, useScroll, useTransform, useInView, cubicBezier } from 'framer-motion';
 import { greatvibes, josefinSans  } from '@/app/utils/font';
 
 interface AnimatedTextProps {
@@ -41,7 +41,7 @@ const AboutPage: React.FC = () => {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: [0.25, 0.46, 0.45, 0.94]
+        ease: cubicBezier(0.25, 0.46, 0.45, 0.94)
       }
     }
   };
