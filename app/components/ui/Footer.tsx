@@ -24,7 +24,7 @@ function Footer() {
             
             <div className="space-y-6">
               <a
-                href="mailto:studio.zentha@gmail.com"
+                href="mailto:zenthastudio@gmail.com"
                 className="group flex items-center gap-4 text-gray-300 hover:text-white transition-all duration-500 ease-out"
               >
                 <div className="w-12 h-12 rounded-full border border-gray-600 flex items-center justify-center group-hover:border-white transition-all duration-500">
@@ -44,7 +44,7 @@ function Footer() {
               </a>
 
               <a
-                href="https://github.com/zentha-studio"
+                href="https://yuvraj.site"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group flex items-center gap-4 text-gray-300 hover:text-white transition-all duration-500 ease-out"

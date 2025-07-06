@@ -143,7 +143,7 @@ export const getPortfolioItems = (isMobile: boolean): PortfolioItem[] => [
   {
     type: PortfolioItemType.Text,
     size: PortfolioItemSize.Small,
-    text: "SOCIAL MEDIA",
+    text: "GOOGLE REVIEW",
     baseX: 200,
     baseY: 500,
     mobileX: 30,

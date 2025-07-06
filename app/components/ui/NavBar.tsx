@@ -18,7 +18,7 @@ const Navbar: React.FC<NavbarProps> = () => {
       </h2>
 
       <Link
-        href="mailto:studio.zentha@gmail.com"
+        href="mailto:zenthastudio@gmail.com"
         className="border border-white/90 px-3 py-1 md:px-6 md:py-2 rounded text-xs md:text-sm font-light tracking-wider bg-white text-black hover:text-white hover:bg-transparent transition-all duration-300 hover:scale-105"
       >
         Contact Us

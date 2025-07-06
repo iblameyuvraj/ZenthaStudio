@@ -9,6 +9,7 @@ import Navbar from "./components/ui/NavBar";
 import FloatingItemComponent from "./components/ui/FloatingItemComponent";
 import HeroSection from "./components/sections/HeroSection";
 import AboutPage from "./components/sections/AboutSection";
+import ContactSection from "./components/sections/ContactSection";
 import Footer from "./components/ui/Footer";
 import MobileBlock from "./components/ui/MobileBlock";
 //  import ProjectSection from "./components/sections/ProjectSection";
@@ -89,6 +90,7 @@ const Page: React.FC = () => {
       {/* Main Content */}
       <HeroSection hoveredOption={hoveredOption} setHoveredOption={setHoveredOption} />
       <AboutPage/>
+      <ContactSection/>
       {/* <ProjectSection/> */}
       <Footer/>
 

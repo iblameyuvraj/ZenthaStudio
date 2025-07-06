@@ -157,7 +157,14 @@ const AboutPage: React.FC = () => {
                     className="text-sm font-light tracking-wider mb-2 cursor-pointer flex justify-center items-center"
                     whileHover={{ scale: 1.1 }}
                   >
-                  <img src='images/logo.png' alt="Zentha Logo" className="w-full" />
+                    <video 
+                      src='/images/logo.mp4' 
+                      autoPlay 
+                      loop 
+                      muted 
+                      playsInline
+                      className="w-full"
+                    />
                   </motion.div>
                 </motion.div>
               </motion.div>
