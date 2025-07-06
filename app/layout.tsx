@@ -49,11 +49,24 @@ export default function RootLayout({
 
         {/* Favicon (optional) */}
         <link rel="icon" href="/favicon.ico" />
+
       </head>
       <body
         className={`${poppins.className} ${poppins.variable} antialiased`}
-      >
+        >
         <LenisProvider>{children}</LenisProvider>
+        {/* Google Analytics */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-001CYZ13FV"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-001CYZ13FV');
+            `,
+          }}
+        />
       </body>
     </html>
   );
