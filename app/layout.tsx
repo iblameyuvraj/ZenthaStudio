@@ -18,7 +18,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         {/* Google Site Verification */}
-        <meta name="google-site-verification" content="google75bda371c7b921f1.html" />
+        <meta name="google-site-verification" content="bNTsjHtnRZTsE70x0cdeI6ckneaSzp8KCyrvOi_0WLM" />
         {/* Mobile viewport settings */}
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         {/* ...other meta tags... */}
