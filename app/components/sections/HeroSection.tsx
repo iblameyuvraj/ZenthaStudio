@@ -38,7 +38,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ hoveredOption, setHoveredOpti
                 transition={{ type: "spring", stiffness: 400, damping: 25 }}
                 className="absolute top-full left-1/2 md:left-3/4 tracking-widest transform -translate-x-1/2 mt-2 text-xs font-light text-white/70 whitespace-nowrap w-full"
               >
-                zenthastudio@gmail.com
+                hi@zentha.in
               </motion.div>
             )}
           </motion.span>

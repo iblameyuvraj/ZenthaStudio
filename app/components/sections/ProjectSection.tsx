@@ -1,42 +1,88 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { FiExternalLink } from "react-icons/fi";
 
-const ProjectsPage = () => {
-  const projects = [
-    {
-      id: 1,
-      title: "Pappadam Analytics Dashboard",
-      description: "A comprehensive analytics platform for tracking pappadam inflation patterns across various markets.",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop",
-      url: "https://example.com/pappadam-dashboard",
-    },
-    {
-      id: 2,
-      title: "Deflation Simulator",
-      description: "An interactive web application that simulates the deflation process of various objects in real-time.",
-      image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=300&fit=crop",
-      url: "https://example.com/deflation-simulator",
-    },
-    {
-      id: 3,
-      title: "Minimalist Portfolio Engine",
-      description: "A lightweight, customizable portfolio framework designed for creative professionals and developers.",
-      image: "https://images.unsplash.com/photo-1559028006-448665bd7c7f?w=400&h=300&fit=crop",
-      url: "https://example.com/minimalist-portfolio",
-    },
-    {
-      id: 4,
-      title: "Ambient Sound Generator",
-      description: "A procedural ambient sound generator that creates unique soundscapes based on environmental data.",
-      image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=300&fit=crop",
-      url: "https://example.com/ambient-sound-generator",
-    }
-  ];
+const projects = [
+  {
+    id: 1,
+    title: "Joulree",
+    description: "Jewelry e-commerce platform with a stunning UI and seamless shopping experience.",
+    image: "/tamplate/joulree.png",
+    url: "https://joulree.in",
+    tags: ["E-commerce", "React", "Next.js"],
+  },
+  {
+    id: 2,
+    title: "Rishu Landing Page",
+    description: "Client work: a modern landing page for Rishu.",
+    image: "/tamplate/rishu.png",
+    url: "https://therishy.netlify.app/",
+    tags: ["Landing Page", "Client", "Next.js"],
+  },
+  {
+    id: 3,
+    title: "Fluffwalks",
+    description: "A pet walker hire app company website.",
+    image: "/tamplate/fluffwalks.png",
+    url: "https://fluffwalks.in",
+    tags: ["Pets", "Service", "React"],
+  },
+  {
+    id: 4,
+    title: "Web Gallery",
+    description: "Infinite scrolling gallery and some photos about me.",
+    image: "/tamplate/webgallery.png",
+    url: "https://web-gallery2.vercel.app/",
+    tags: ["Gallery", "Photos", "React"],
+  },
+  {
+    id: 5,
+    title: "Nexus Esports",
+    description: "An esports website for players and teams to connect and compete.",
+    image: "/tamplate/nexus.png",
+    url: "https://nexusg.netlify.app/",
+    tags: ["Esports", "Gaming", "React"],
+  },
+  {
+    id: 6,
+    title: "Pear2Pear",
+    description: "P2P file transferring web app to transfer files with 0 backend.",
+    image: "/tamplate/p2p.png",
+    url: "https://pear2pear.netlify.app/",
+    tags: ["P2P", "WebRTC", "Files"],
+  },
+  {
+    id: 7,
+    title: "Zee Rodium",
+    description: "Electroplating company website for Zee Rodium.",
+    image: "/tamplate/zeerodium.png",
+    url: "https://zeerodium.netlify.app/",
+    tags: ["Business", "Electroplating", "Next.js"],
+  },
+  {
+    id: 8,
+    title: "Zentha AI",
+    description: "AI for mental health - a modern, supportive web app.",
+    image: "/tamplate/zentha.png",
+    url: "https://zentha.netlify.app/",
+    tags: ["AI", "Mental Health", "Next.js"],
+  },
+  {
+    id: 9,
+    title: "Magnolia",
+    description: "A cafe website in the middle of nature!",
+    image: "/tamplate/magnolia.png",
+    url: "https://themagnollia.netlify.app/",
+    tags: ["Cafe", "Website", "Nature"],
+  },
+];
+
+const ProjectsSection = () => {
+  const [hovered, setHovered] = useState<number | null>(null);
 
   return (
-    <div className="min-h-screen bg-black text-white py-16 px-4 md:px-8">
-      <div className="max-w-7xl mx-auto">
+    <div className="relative min-h-screen bg-black text-white py-16 px-4 md:px-8 overflow-hidden">
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -30 }}
@@ -48,53 +94,55 @@ const ProjectsPage = () => {
             Projects
           </h1>
           <p className="text-white/60 text-sm md:text-base tracking-wider">
-            A collection of deflated endeavors and inflated ambitions
+            A collection of my favorite work, with live demos and templates
           </p>
         </motion.div>
-
         {/* Projects Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-          {projects.map((project) => (
-            <div
+          {projects.map((project, idx) => (
+            <motion.div
               key={project.id}
-              className="relative group overflow-hidden rounded-2xl cursor-pointer border border-white/10"
+              className="relative group overflow-hidden rounded-2xl cursor-pointer border border-white/10 shadow-xl backdrop-blur-lg bg-white/5"
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: idx * 0.1, duration: 0.7, ease: 'easeOut' }}
+              style={{ minHeight: 0, height: 'auto' }}
             >
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
-              />
+              <a href="" className="block w-full aspect-video bg-black/80 flex items-center justify-center relative">
+                <img
+                  src={project.image}
+                  alt={project.title + ' Template Preview'}
+                  className="w-full h-full object-cover rounded-2xl transition-transform duration-500 group-hover:scale-105"
+                />
+              </a>
               {/* Overlay */}
-              <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center text-center px-4">
-                <h3 className="text-white text-xl font-semibold mb-2">{project.title}</h3>
-                <p className="text-white/80 text-sm mb-4">{project.description}</p>
-
-                <a href={project.url} target="_blank" rel="noopener noreferrer">
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="relative z-10 px-6 py-2 border border-white text-white font-medium rounded overflow-hidden"
-                  >
-                    <span className="relative z-10 flex items-center gap-2">
-                      View Project <FiExternalLink />
+              <div
+                className="absolute inset-0 flex flex-col justify-center items-center text-center px-4 bg-black/90 opacity-0 group-hover:opacity-100 transition-all duration-300 z-10 border-none shadow-none"
+              >
+                <h3 className="text-white text-2xl font-semibold mb-2 flex items-center justify-center gap-2">
+                  {project.title}
+                </h3>
+                <p className="text-white/80 text-sm mb-4 max-w-xs mx-auto">{project.description}</p>
+                <div className="flex flex-wrap gap-2 justify-center mb-4">
+                  {project.tags.map((tag, i) => (
+                    <span key={i} className="bg-white/10 text-white/80 px-2 py-1 rounded-full text-xs font-medium border border-white/30">
+                      {tag}
                     </span>
-                    {/* Background animation */}
-                    <motion.div
-                      initial={{ width: 0 }}
-                      whileHover={{ width: "100%" }}
-                      transition={{ duration: 0.5, ease: "easeInOut" }}
-                      className="absolute inset-0 bg-white z-0 origin-left"
-                      style={{ transitionProperty: "width" }}
-                    />
-                    <span className="absolute inset-0 z-0 bg-white group-hover:opacity-100 transition-opacity duration-500"></span>
-                    <span className="absolute inset-0 z-10 text-black group-hover:text-black transition-colors duration-300"></span>
-                  </motion.button>
-                </a>
+                  ))}
+                </div>
+                <div className="flex gap-3 justify-center">
+                  <a href={project.url} target="_blank" rel="noopener noreferrer">
+                    <button
+                      className="flex items-center gap-2 px-5 py-2 border border-white text-white font-medium rounded-full bg-black/80 hover:bg-white/10 transition-colors"
+                    >
+                      View Project <FiExternalLink />
+                    </button>
+                  </a>
+                </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
-
         {/* Footer */}
         <motion.div
           initial={{ opacity: 0 }}
@@ -103,7 +151,7 @@ const ProjectsPage = () => {
           className="text-center mt-16 md:mt-24"
         >
           <p className="text-white/40 text-sm tracking-widest">
-            More projects deflating soon...
+            More projects coming soon... 🚀
           </p>
         </motion.div>
       </div>
@@ -111,4 +159,4 @@ const ProjectsPage = () => {
   );
 };
 
-export default ProjectsPage;
+export default ProjectsSection;

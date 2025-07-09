@@ -125,8 +125,8 @@ const FloatingItemComponent = React.memo(({
           top: positionY,
           x: isMobile ? 0 : itemX,
           y: isMobile ? 0 : itemY,
-          width: baseStyle.width,
-          height: baseStyle.height,
+          width: isMobile && item.mobileWidth ? getResponsiveSize(item.mobileWidth, true, true) : baseStyle.width,
+          height: isMobile && item.mobileHeight ? getResponsiveSize(item.mobileHeight, true, false) : baseStyle.height,
         }}
       >
         <img
@@ -140,7 +140,7 @@ const FloatingItemComponent = React.memo(({
     );
   }
 
-  if (item.type === "testimonial" && !isMobile) {
+  if (item.type === "testimonial") {
     return (
       <motion.div
         className="absolute will-change-transform"
@@ -149,15 +149,15 @@ const FloatingItemComponent = React.memo(({
           top: positionY,
           x: isMobile ? 0 : itemX,
           y: isMobile ? 0 : itemY,
-          width: item.width ? getResponsiveSize(item.width, isMobile, true) : 'auto',
-          maxWidth: '25vw',
+          width: isMobile && item.mobileWidth ? getResponsiveSize(item.mobileWidth, true, true) : (item.width ? getResponsiveSize(item.width, isMobile, true) : 'auto'),
+          maxWidth: isMobile ? '90vw' : '25vw',
         }}
       >
-        <div className="bg-white/8 backdrop-blur-sm border border-white/10 p-4 md:p-6 rounded-lg transition-all duration-300 hover:bg-white/12 hover:border-white/20">
-          <p className="text-[0.9vw] font-light leading-relaxed mb-3 md:mb-4 text-white/90" >
+        <div className={`bg-white/8 backdrop-blur-sm border border-white/10 rounded-lg transition-all duration-300 hover:bg-white/12 hover:border-white/20 ${isMobile ? 'p-4' : 'p-4 md:p-6'}`}>
+          <p className={`${isMobile ? 'text-base leading-relaxed mb-3' : 'text-[0.9vw] mb-3 md:mb-4'} font-light text-white/90`}>
             &quot;{item.text}&quot;
           </p>
-          <div className="text-xs font-light text-white/70" style={{ fontSize: isMobile ? 'clamp(8px, 2.5vw, 12px)' : 'clamp(10px, 0.7vw, 14px)' }}>
+          <div className={`${isMobile ? 'text-xs' : 'text-xs'} font-light text-white/70`} style={{ fontSize: isMobile ? 'clamp(12px, 3vw, 16px)' : 'clamp(10px, 0.7vw, 14px)' }}>
             — {item.author}
             {item.title && <br />}
             {item.title}
@@ -167,9 +167,8 @@ const FloatingItemComponent = React.memo(({
     );
   }
 
-  const isMainTitle = item.text === "visual" || item.text === "identity" || item.text?.includes("VISUAL");
-  
-  if (item.type !== "testimonial") {
+  if (item.type === "text") {
+    const isMainTitle = item.text === "visual" || item.text === "identity" || item.text?.includes("VISUAL");
     return (
       <motion.div
         className={`absolute whitespace-pre-line font-light tracking-wider will-change-transform ${

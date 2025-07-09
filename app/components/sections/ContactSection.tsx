@@ -2,7 +2,6 @@
 
 import React, { useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import emailjs from '@emailjs/browser';
 import { josefinSans, greatvibes } from '@/app/utils/font';
 
 interface ServiceOption {
@@ -26,6 +25,7 @@ const ContactSection: React.FC = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const serviceOptions: ServiceOption[] = [
     { id: 'web-dev', label: 'Web Development', icon: '🌐' },
@@ -49,27 +49,52 @@ const ContactSection: React.FC = () => {
     }));
   };
 
+  const validateForm = () => {
+    if (!formData.name.trim()) {
+      setErrorMessage('Please enter your name');
+      return false;
+    }
+    if (!formData.email.trim()) {
+      setErrorMessage('Please enter your email address');
+      return false;
+    }
+    if (!formData.email.includes('@')) {
+      setErrorMessage('Please enter a valid email address');
+      return false;
+    }
+    if (!formData.selectedService) {
+      setErrorMessage('Please select a service');
+      return false;
+    }
+    return true;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    if (!formData.name || !formData.email || !formData.selectedService) {
-      alert('Please fill in all required fields');
+    setErrorMessage('');
+    setSubmitStatus('idle');
+    if (!validateForm()) {
+      setSubmitStatus('error');
       return;
     }
-
     setIsSubmitting(true);
-    setSubmitStatus('idle');
-
     try {
-      // Replace these with your actual EmailJS credentials
-      const result = await emailjs.sendForm(
-        'service_akgwn68', // Replace with your EmailJS service ID
-        'template_c7a37od', // Replace with your EmailJS template ID
-        formRef.current!,
-        'Jm_SL1xoPXXSeQvEe' // Replace with your EmailJS public key
-      );
-
-      if (result.status === 200) {
+      const response = await fetch('https://formspree.io/f/mblyvwpv', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          selectedService: formData.selectedService,
+          message: formData.message,
+        }),
+      });
+      const data = await response.json();
+      if (response.ok) {
         setSubmitStatus('success');
         setFormData({
           name: '',
@@ -79,10 +104,11 @@ const ContactSection: React.FC = () => {
           message: ''
         });
       } else {
+        setErrorMessage(data.errors?.[0]?.message || 'Something went wrong. Please try again or contact us directly.');
         setSubmitStatus('error');
       }
     } catch (error) {
-      console.error('EmailJS error:', error);
+      setErrorMessage('Failed to send message. Please try again or contact us directly.');
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
@@ -208,7 +234,7 @@ const ContactSection: React.FC = () => {
             />
           </div>
 
-          {/* Selected Service (Hidden input for EmailJS) */}
+          {/* Selected Service (Hidden input for Formspree) */}
           <input
             type="hidden"
             name="selectedService"
@@ -260,7 +286,10 @@ const ContactSection: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               className="text-red-400 text-center py-2"
             >
-                Something went wrong. Please try again or contact us on <a href="mailto:zenthastudio@gmail.com" className="text-white/90 hover:text-white/100 transition-colors">zenthastudio@gmail.com</a>
+              <div className="mb-2">{errorMessage}</div>
+              <div className="text-sm text-white/70">
+                Or contact us directly at <a href="mailto:hi@zentha.in" className="text-white/90 hover:text-white/100 transition-colors underline">hi@zentha.in</a>
+              </div>
             </motion.div>
           )}
         </motion.form>

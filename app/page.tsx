@@ -12,7 +12,7 @@ import AboutPage from "./components/sections/AboutSection";
 import ContactSection from "./components/sections/ContactSection";
 import Footer from "./components/ui/Footer";
 import MobileBlock from "./components/ui/MobileBlock";
-//  import ProjectSection from "./components/sections/ProjectSection";
+ import ProjectSection from "./components/sections/ProjectSection";
 
 const Page: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -44,9 +44,9 @@ const Page: React.FC = () => {
   }, [isMobile]);
 
   // Show mobile block if on mobile device
-  if (isMobile) {
-    return <MobileBlock />;
-  }
+  // if (isMobile) {
+  //   return <MobileBlock />;
+  // }
 
   return (
     <div
@@ -90,8 +90,8 @@ const Page: React.FC = () => {
       {/* Main Content */}
       <HeroSection hoveredOption={hoveredOption} setHoveredOption={setHoveredOption} />
       <AboutPage/>
+      <ProjectSection/>
       <ContactSection/>
-      {/* <ProjectSection/> */}
       <Footer/>
 
     </div>
