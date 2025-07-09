@@ -63,10 +63,10 @@ const ContactSection: React.FC = () => {
     try {
       // Replace these with your actual EmailJS credentials
       const result = await emailjs.sendForm(
-        'service_2mrmhes', // Replace with your EmailJS service ID
-        'template_aj4b0vn', // Replace with your EmailJS template ID
+        'service_akgwn68', // Replace with your EmailJS service ID
+        'template_c7a37od', // Replace with your EmailJS template ID
         formRef.current!,
-        'RaouJsMfL5Q0-XAnD' // Replace with your EmailJS public key
+        'Jm_SL1xoPXXSeQvEe' // Replace with your EmailJS public key
       );
 
       if (result.status === 200) {
